@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float speed;
+    public float speed = 3.0f;
+    public bool vertical;
+    public float changeTime = 3.0f;
 
     Rigidbody rigidbody2d;
+
+    float timer;
+    int direction = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +28,15 @@ public class EnemyController : MonoBehaviour
     void FixedUpdate()
     {
         Vector2 position = rigidbody2d.position;
-        position.x = position.x + Time.deltaTime * speed;
+        if(vertical)
+        {
+            position.y = position.y + Time.deltaTime * speed;
+        }
+        else
+        {
+            position.x = position.x + Time.deltaTime * speed;
+        }
+        
 
         rigidbody2d.MovePosition(position);
     }
